@@ -5,7 +5,7 @@
     <div class="container">
     <h1 class="mb-3">ToDoList</h1>
     
-    <form action="/todo/list" method="post">
+    <form action="/todo/input" method="post">
       @csrf
       <div class="row">
         <label for="title" class="col-3">やること:

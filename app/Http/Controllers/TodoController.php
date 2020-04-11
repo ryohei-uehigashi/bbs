@@ -21,7 +21,7 @@ class TodoController extends Controller
       'time' => $request->datetime,
       'note' => $request->note
     ]);
-    return view('todo/input');
+    return redirect('/todo/list');
     //redirect:URLに移動する指示
     //web.phpのRoute::get('/todo/input', 'TodoController@index');
   }

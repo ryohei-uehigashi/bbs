@@ -44,3 +44,9 @@ Route::get('/todo/input', 'TodoController@index');
 Route::post('/todo/input', 'TodoController@list');
 Route::get('/todo/list', 'TodoController@todo_list');
 Route::post('/todo/list', 'TodoController@todo_list');
+
+//いいこと
+Route::get('/iikoto/input', 'IikotoController@index');
+Route::post('/iikoto/input', 'IikotoController@iikoto');
+Route::get('/iikoto/list', 'IikotoController@iikoto_list');
+Route::post('/iikoto/list', 'IikotoController@iikoto_list');
