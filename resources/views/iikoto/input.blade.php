@@ -4,8 +4,8 @@
 
     <div class="container">
       
-      <h1>きょうのいいこと</h1>
-      <form action="/iikoto/list" method="post">
+      <h1 class="mb-4 border-bottom">きょうのいいこと</h1>
+      <form action="/iikoto/input" method="post">
         @csrf
         <div>
             <label for="date">日付：

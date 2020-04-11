@@ -19,6 +19,7 @@ class IikotoController extends Controller
       'date' => $request->date,
       'iikoto' => $request->iikoto
     ]);
+    return redirect('/iikoto/list');
   }
 
   public function iikoto_list() {

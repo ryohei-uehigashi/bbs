@@ -8,9 +8,10 @@ class CreateIikotosTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
+    // up関数:コラムを定義
     public function up()
     {
         Schema::create('iikotos', function (Blueprint $table) {
@@ -26,6 +27,7 @@ class CreateIikotosTable extends Migration
      *
      * @return void
      */
+    // down関数：テーブル削除の処理
     public function down()
     {
         Schema::dropIfExists('iikotos');
