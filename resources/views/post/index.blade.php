@@ -10,9 +10,9 @@
       <div>
         <h1>{{$post->title}}</h1>
         <p>{{$post->content}}</p>
+        <a href="/post/edit/{{$post->id}}">編集</a>
+        <a href="/post/delete/{{$post->id}}">削除</a>
       </div>
     @endforeach
   </div>
-
-
 @endsection

@@ -24,9 +24,9 @@
       @foreach($iikotos as $iikoto)
       <div>
         <h3>{{$iikoto->date}}</h3>
-        <h1 class="mb-3 border-bottom">{{$iikoto->iikoto}}</h1>
+        <h1 class="mb-4 border-bottom">{{$iikoto->iikoto}}</h1>
       </div>
       @endforeach
-      <a href="#">入力欄へ</a>
+      <a href="#input">入力欄へ</a>
     </div>
 @endsection

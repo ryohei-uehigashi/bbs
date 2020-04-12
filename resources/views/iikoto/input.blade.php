@@ -6,6 +6,7 @@
       
       <h1 class="mb-4 border-bottom">きょうのいいこと</h1>
       <form action="/iikoto/input" method="post">
+        {{-- @csrfはformの中に書く --}}
         @csrf
         <div>
             <label for="date">日付：
