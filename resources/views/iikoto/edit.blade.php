@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="container">
-      <h1 class="mb-3">いいことリスト</h1>
+      <h1 class="mb-3">編集</h1>
 
       {{-- 入力欄 --}}
       <form action="/iikoto/input" method="post" class="border mb-4 p-2" id="input">
         @csrf
         <div>
             <label for="date">日付：
-              <input type="date" name="date">
+              <input type="date" name="date" value="">
             </label>
         </div>
         <div>
@@ -19,16 +19,4 @@
         </div>
         <input type="submit">
       </form>
-
-      {{-- いいことリスト --}}
-      @foreach($iikotos as $iikoto)
-        <div>
-          <h3>{{$iikoto->date}}</h3>
-          <h1>{{$iikoto->iikoto}}</h1>
-          <a href="/iikoto/delete/{{$iikoto->id}}">削除</a>
-          <hr class="mb-3">
-        </div>
-      @endforeach
-      <a href="#input">入力欄へ</a>
-    </div>
 @endsection

@@ -31,4 +31,28 @@ class TodoController extends Controller
     $todos = Todo::get();
     return view('todo/list', ['todos' => $todos]);
   }
+
+  // 削除
+  public function delete($id) {
+    $todo = Todo::find($id);
+    $todo->delete();
+    return redirect('/todo/list');
+  }
+
+//編集
+  public function edit($id) {
+    $todo = Todo::find($id);
+    return view('todo/edit', ['todo' => $todo]);
+  }
+
+  //編集後、更新
+  public function update(Request $request, $id) {
+    $todo = Todo::find($id);
+    $todo->update([
+      'title' => $request->title,
+      'time' => $request->time,
+      'note' => $request->note
+      ]);
+    return redirect('/todo/list');
+  }
 }

@@ -37,20 +37,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 //掲示板
 Route::get('/post/create', 'PostController@create');
 Route::post('/post/create', 'PostController@store');
-Route::get('/post', 'PostController@index');
+Route::get('/post', 'PostController@index'); //一覧表示
 Route::get('/post/delete/{id}', 'PostController@delete'); //パラメータ持たせる（今回はid番号）
-//編集
+//掲示板編集
 Route::get('/post/edit/{id}', 'PostController@edit');
-Route::post('/post/edit/{id}', 'PostController@update');
+Route::post('/post/edit/{id}', 'PostController@update'); //編集後の画面
 
 //ToDoリスト
-Route::get('/todo/input', 'TodoController@index'); //いらない
 Route::post('/todo/input', 'TodoController@list');
 Route::get('/todo/list', 'TodoController@todo_list');
-Route::post('/todo/list', 'TodoController@todo_list');  //いらない
+Route::get('/todo/delete/{$id}', 'TodoController@delete');
+Route::get('/todo/edit/{$id}', 'TodoController@edit'); //編集
+Route::post('/todo/edit/{$id}' , 'TodoController@update');
 
 //いいこと
-Route::get('/iikoto/input', 'IikotoController@index');  //いらない
 Route::post('/iikoto/input', 'IikotoController@iikoto'); //
 Route::get('/iikoto/list', 'IikotoController@iikoto_list');
-Route::post('/iikoto/list', 'IikotoController@iikoto_list');  //いらない
+Route::get('/iikoto/edit/{$id}', 'IikotoController@delete');

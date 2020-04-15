@@ -23,18 +23,18 @@
       </div>
       <button class="btn btn-primary btn-lg mb-3">送信</button>
     </form>
-    <a class="" href="/todo/input">入力画面へ</a>
     <hr color="black" size="4px">
-
-  
 
     {{-- ToDoList表示 --}}
     <div class="container">
       @foreach($todos as $todo)
         <div>
-          <h4>{{$todo->updated_at}}</h4>
+          <h4 class="mt-4">{{$todo->updated_at}}</h4>
           <h2>{{$todo->title}}</h2>
-          <p class="border-bottom mb-3">{{$todo->note}}</p>
+          <p>{{$todo->note}}</p>
+          <a href="/todo/edit/{{$todo->id}}">編集する</a> / 
+          <a href="/post/delete/{{$todo->id}}">削除する</a>
+          <hr>
         </div>
       @endforeach
     </div>

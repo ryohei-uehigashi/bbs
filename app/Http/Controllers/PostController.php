@@ -48,7 +48,10 @@ class PostController extends Controller
     //編集した後に更新
     public function update(Request $request, $id) {
       $post = Post::find($id);
-      $post->update(['title' => $request->title, 'content' => $request->content]);
+      $post->update([
+        'title' => $request->title,
+        'content' => $request->content
+      ]);
       return redirect('/post');
     }
 }

@@ -26,4 +26,16 @@ class IikotoController extends Controller
       $iikotos = Iikoto::get();
       return view('iikoto/list', ['iikotos' => $iikotos]);
     }
+
+  //削除
+  public function delete($id) {
+    $iikoto = Iikoto::find($id);
+    return redirect('/iikoto/list',);
+  }
+
+  //更新
+  public function update(Request $request, $id) {
+    $iikoto = Iikoto::find($id);
+    
+  }
 }
