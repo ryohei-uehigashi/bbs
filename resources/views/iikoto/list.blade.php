@@ -25,6 +25,7 @@
         <div>
           <h3>{{$iikoto->date}}</h3>
           <h1>{{$iikoto->iikoto}}</h1>
+        <a href="/iikoto/edit/{{$iikoto->id}}">編集</a> / 
           <a href="/iikoto/delete/{{$iikoto->id}}">削除</a>
           <hr class="mb-3">
         </div>

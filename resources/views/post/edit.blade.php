@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <h1>編集ページ</h1>
+  <h1>編集ページ（ログインしてね！）</h1>
   <form action="/post/edit/{{$post->id}}" method="post">
     @csrf
     <div>

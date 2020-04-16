@@ -30,12 +30,23 @@ class IikotoController extends Controller
   //削除
   public function delete($id) {
     $iikoto = Iikoto::find($id);
+    $iikoto->delete();
     return redirect('/iikoto/list',);
+  }
+
+  //編集
+  public function edit($id) {
+    $iikoto = Iikoto::find($id);
+    return view('iikoto/edit', ['iikoto' => $iikoto]);
   }
 
   //更新
   public function update(Request $request, $id) {
     $iikoto = Iikoto::find($id);
-    
+    $iikoto->update([
+      'date' => $request->date,
+      'iikoto' =>$request->iikoto
+    ]);
+    return redirect('/iikoto/list');
   }
 }

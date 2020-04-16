@@ -9,12 +9,12 @@
         @csrf
         <div>
             <label for="date">日付：
-              <input type="date" name="date" value="">
+            <input type="date" name="date" value="{{$iikoto->date}}">
             </label>
         </div>
         <div>
           <label for="iikoto">いいこと：
-            <input type="text" name="iikoto">
+            <input type="text" name="iikoto" value="{{$iikoto->iikoto}}">
           </label>
         </div>
         <input type="submit">
