@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //appディレクトリ内のTodo.php（モデル）呼び出しTodoテーブル
 use App\Todo;
+use Illuminate\Support\Carbon;
 
 class TodoController extends Controller
 {
@@ -42,17 +43,20 @@ class TodoController extends Controller
 //編集
   public function edit($id) {
     $todo = Todo::find($id);
+    // フルネームスペースで指定
+    $todo->time = Carbon::parse($todo->time)->format('Y-m-d\TH:i');
     return view('todo/edit', ['todo' => $todo]);
   }
 
   //編集後、更新
   public function update(Request $request, $id) {
     $todo = Todo::find($id);
+    dd($request->datetime);
     $todo->update([
       'title' => $request->title,
-      'time' => $request->time,
+      'time' => $request->datetime,
       'note' => $request->note
-      ]);
+    ]);
     return redirect('/todo/list');
   }
 }

@@ -5,7 +5,7 @@
       <h1 class="mb-3">編集</h1>
 
       {{-- 入力欄 --}}
-      <form action="/iikoto/input" method="post" class="border mb-4 p-2" id="input">
+      <form action="/iikoto/edit/{{$iikoto->id}}" method="post" class="border mb-4 p-2" id="input">
         @csrf
         <div>
             <label for="date">日付：

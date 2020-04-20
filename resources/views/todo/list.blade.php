@@ -29,7 +29,8 @@
     <div class="container">
       @foreach($todos as $todo)
         <div>
-          <h4 class="mt-4">{{$todo->updated_at}}</h4>
+          <h4 class="mt-4">投稿時間：{{$todo->updated_at}}</h4>
+          <h4>{{$todo->time}}</h4>
           <h2>{{$todo->title}}</h2>
           <p>{{$todo->note}}</p>
           <a href="/todo/edit/{{$todo->id}}">編集する</a> / 
