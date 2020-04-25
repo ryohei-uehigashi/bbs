@@ -28,7 +28,12 @@ class TodoController extends Controller
   }
 
   // TodoListに関するメソッド
-  public function todo_list() {
+  public function todo_list(Request $request) {
+    $validatedData = $request->validate([
+      'title' => 'require | max:10',
+      'datetime' => 'required',
+      'note' => 'required | max:10'
+    ]);
     $todos = Todo::get();
     return view('todo/list', ['todos' => $todos]);
   }
@@ -41,7 +46,12 @@ class TodoController extends Controller
   }
 
 //編集
-  public function edit($id) {
+  public function edit($id, Request $request) {
+    $validatedData = $request->validate([
+      'title' => 'required | max:10',
+      'datetime' => 'required',
+      'note' => 'required | max:30',
+    ]);
     $todo = Todo::find($id);
     // フルネームスペースで指定
     $todo->time = Carbon::parse($todo->time)->format('Y-m-d\TH:i');

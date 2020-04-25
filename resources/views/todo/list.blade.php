@@ -5,7 +5,7 @@
     <div class="container">
     <h1 class="mb-3">ToDoList</h1>
     
-    <form action="/todo/input" method="post">
+    <form action="/todo/list" method="post">
       @csrf
       <div class="row">
         <label for="title" class="col-3">やること:
@@ -39,4 +39,22 @@
         </div>
       @endforeach
     </div>
+
+    {{-- エラーメッセージ --}}
+    @if($errors->any()) {
+      <div class="alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{$error}} </li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+    }
+
+    <label for="title">Post</label>
+    <input type="text" id="title" class="@error('title') is-invalid @enderror">
+    @error('title')
+      <div class="alert alert-danger">{{$message}}</div>
+    @enderror
 @endsection

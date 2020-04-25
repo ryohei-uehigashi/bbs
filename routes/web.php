@@ -50,41 +50,11 @@ Route::post('/post/edit/{id}', 'PostController@update'); //編集後の画面
 
 //ToDoリスト
 // ミドルウェア
-Route::middleware(['auth'])->group(function(Request $request) {
-    Route::post('/todo/input', 'TodoController@list'); //コラム与える
+Route::middleware(['auth'])->group(function() {
+    Route::post('/todo/list', 'TodoController@list'); //コラム与える
     Route::get('/todo/list', 'TodoController@todo_list'); //投稿＆一覧
-    {
-        // バリデーション
-        $validator = Validator::make($request->all(), [
-            'id' => 'required',
-            'title' => 'required | max:20',
-            'datetime' => 'required',
-            'note' => 'require | max:100',
-        ]);
-        // エラー発見時の処理
-        if ($validator->fails()) {
-            return redirect('/todo/list')
-                ->withInput()
-                ->withErrors($validator);
-        }
-    }
     Route::get('/todo/delete/{id}', 'TodoController@delete'); //削除
     Route::get('/todo/edit/{id}', 'TodoController@edit'); //編集
-    {
-        // バリデーション
-        $validator = Validator::make($request->all(), [
-        'id' => 'required',
-        'title' => 'required | max:20',
-        'datetime' => 'required',
-        'note' => 'require | max:100',
-        ]);
-        // エラー発見時の処理
-        if ($validator->fails()) {
-        return redirect('/todo/list')
-            ->withInput()
-            ->withErrors($validator);
-        }
-    }
     Route::post('/todo/edit/{id}', 'TodoController@update'); //更新
 });
 
@@ -92,38 +62,8 @@ Route::middleware(['auth'])->group(function(Request $request) {
 // ミドルウェア
 Route::middleware(['auth'])->group(function () {
     Route::get('/iikoto/list', 'IikotoController@iikoto_list'); //投稿＆一覧
-    {
-        // バリデーション
-        $validator = Validator::make($request->all(), [
-            'id' => 'required',
-            'title' => 'required | max:20',
-            'datetime' => 'required',
-            'note' => 'require | max:100',
-        ]);
-        // エラー発見時の処理
-        if ($validator->fails()) {
-            return redirect('/todo/list')
-                ->withInput()
-                ->withErrors($validator);
-        }
-    }
     Route::post('/iikoto/input', 'IikotoController@iikoto');
     Route::get('/iikoto/edit/{id}', 'IikotoController@edit'); //編集
-    {
-        // バリデーション
-        $validator = Validator::make($request->all(), [
-            'id' => 'required',
-            'title' => 'required | max:20',
-            'datetime' => 'required',
-            'note' => 'require | max:100',
-        ]);
-        // エラー発見時の処理
-        if ($validator->fails()) {
-            return redirect('/todo/list')
-                ->withInput()
-                ->withErrors($validator);
-        }
-    }
     Route::get('/iikoto/delete/{id}', 'IikotoController@delete'); //削除
     Route::post('/iikoto/edit/{id}', 'IikotoController@update'); //更新 
 });
