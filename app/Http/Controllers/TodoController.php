@@ -17,6 +17,11 @@ class TodoController extends Controller
 
   //use Illuminate\Http\Request;とpublic function xxx(Request $request){}はセット
   public function list(Request $request) {
+    $request->validate([
+      'title' => 'required | max:10',
+      'datetime' => 'required',
+      'note' => 'required | max:30',
+    ]);
     Todo::create([
       'title' => $request->title,
       'time' => $request->datetime,
@@ -29,11 +34,6 @@ class TodoController extends Controller
 
   // TodoListに関するメソッド
   public function todo_list(Request $request) {
-    $validatedData = $request->validate([
-      'title' => 'require | max:10',
-      'datetime' => 'required',
-      'note' => 'required | max:10'
-    ]);
     $todos = Todo::get();
     return view('todo/list', ['todos' => $todos]);
   }
@@ -47,11 +47,6 @@ class TodoController extends Controller
 
 //編集
   public function edit($id, Request $request) {
-    $validatedData = $request->validate([
-      'title' => 'required | max:10',
-      'datetime' => 'required',
-      'note' => 'required | max:30',
-    ]);
     $todo = Todo::find($id);
     // フルネームスペースで指定
     $todo->time = Carbon::parse($todo->time)->format('Y-m-d\TH:i');
@@ -60,8 +55,12 @@ class TodoController extends Controller
 
   //編集後、更新
   public function update(Request $request, $id) {
+    $validatedData = $request->validate([
+      'title' => 'required | max:10',
+      'datetime' => 'required',
+      'note' => 'required | max:30',
+    ]);
     $todo = Todo::find($id);
-    dd($request->datetime);
     $todo->update([
       'title' => $request->title,
       'time' => $request->datetime,

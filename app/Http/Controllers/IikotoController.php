@@ -22,8 +22,13 @@ class IikotoController extends Controller
     return redirect('/iikoto/list');
   }
 
-  public function iikoto_list() {
+  public function iikoto_list(Request $request) {
       $iikotos = Iikoto::get();
+      $validatedData = $request->validate([
+        'title' => 'required | max:10',
+        'datetime' => 'required',
+        'note' => 'required | max:30',
+      ]);
       return view('iikoto/list', ['iikotos' => $iikotos]);
     }
 

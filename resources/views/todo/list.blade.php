@@ -3,23 +3,40 @@
 @section('content')
     {{-- Todo入力 --}}
     <div class="container">
+        {{-- エラーメッセージ --}}
+        @if($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{$error}} </li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
     <h1 class="mb-3">ToDoList</h1>
     
     <form action="/todo/list" method="post">
       @csrf
       <div class="row">
-        <label for="title" class="col-3">やること:
-          <input type="text" name="title" class="ml-3 mb-3">
-        </label><br>
-        <label for="datetime" class="col-3">日時:
-          <input name="datetime" type="datetime-local" class="ml-3 mb-3">
-        </label>
+        <label for="title">やること：</label>
+        <input type="text" id="title" name="title" class="@error('title') is-invalid @enderror">
+        @error('title')
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+
+        <label for="datetime">日時：</label>
+        <input type="datetime-local" id="datetime" name="datetime" class="@error('datetime') is-invalid @enderror">
+        @error('datetime')
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
       </div>
       
       <div class="row">
-        <label for="note" class="col-2">備考
-          <input name="note" cols="38" rows="5" class="ml-3">
-        </label>
+        <label for="note">備考</label>
+        <input type="text" id="note" name="note" class="@error('note') is-invalid @enderror">
+        @error('note')
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
       </div>
       <button class="btn btn-primary btn-lg mb-3">送信</button>
     </form>
@@ -39,22 +56,4 @@
         </div>
       @endforeach
     </div>
-
-    {{-- エラーメッセージ --}}
-    @if($errors->any()) {
-      <div class="alert alert-danger">
-        <ul>
-          @foreach ($errors->all() as $error)
-            <li>{{$error}} </li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
-    }
-
-    <label for="title">Post</label>
-    <input type="text" id="title" class="@error('title') is-invalid @enderror">
-    @error('title')
-      <div class="alert alert-danger">{{$message}}</div>
-    @enderror
 @endsection
