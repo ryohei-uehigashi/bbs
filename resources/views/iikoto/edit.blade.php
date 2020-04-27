@@ -8,14 +8,18 @@
       <form action="/iikoto/edit/{{$iikoto->id}}" method="post" class="border mb-4 p-2" id="input">
         @csrf
         <div>
-            <label for="date">日付：
-            <input type="date" name="date" value="{{$iikoto->date}}">
-            </label>
+          <label for="date">日付：</label>
+          <input type="date" name="date" value="{{$iikoto->date}}">
+          @error('date')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
         <div>
-          <label for="iikoto">いいこと：
-            <input type="text" name="iikoto" value="{{$iikoto->iikoto}}">
-          </label>
+          <label for="iikoto">いいこと：</label>
+          <input type="text" name="iikoto" value="{{$iikoto->iikoto}}">
+          @error('iikoto')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
         <input type="submit">
       </form>

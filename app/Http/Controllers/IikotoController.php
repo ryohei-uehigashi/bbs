@@ -15,6 +15,15 @@ class IikotoController extends Controller
   // モデル作成
   // ['(key)' => (value)]
   public function iikoto(Request $request) {
+    $validatedData = $request->validate([
+      'date' => 'required',
+      'iikoto' => 'required | max:15',
+    ],
+    [
+      'date.required' => '「日付」は必須項目です',
+      'iikoto.required' => '「いいこと」は必須項目です',
+      'iikoto.max:15' => '１５文字以内で記入してください',
+    ]);
     Iikoto::create([
       'date' => $request->date,
       'iikoto' => $request->iikoto
@@ -22,14 +31,9 @@ class IikotoController extends Controller
     return redirect('/iikoto/list');
   }
 
-  public function iikoto_list(Request $request) {
-      $iikotos = Iikoto::get();
-      $validatedData = $request->validate([
-        'title' => 'required | max:10',
-        'datetime' => 'required',
-        'note' => 'required | max:30',
-      ]);
-      return view('iikoto/list', ['iikotos' => $iikotos]);
+  public function iikoto_list() {
+    $iikotos = Iikoto::get();
+    return view('iikoto/list', ['iikotos' => $iikotos]);
     }
 
   //削除
@@ -48,6 +52,15 @@ class IikotoController extends Controller
   //更新
   public function update(Request $request, $id) {
     $iikoto = Iikoto::find($id);
+    $validatedData = $request->validate([
+      'date' => 'required',
+      'iikoto' => 'required | max:15'
+    ],
+    [
+      'date.required' => '「日付」は必須項目です',
+      'iikoto.required' => '「いいこと」は必須項目です',
+      'iikoto.max:15' => '１５文字以内で記入してください'
+    ]);
     $iikoto->update([
       'date' => $request->date,
       'iikoto' =>$request->iikoto
